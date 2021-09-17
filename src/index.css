@@ -1,13 +1,201 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+ 
+/* estilos generales */
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}  
+
+body {
+  font-size: 16px;
+  font-family: 'Roboto', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #1d273b;
+  font-weight: 300;
+}
+
+
+h1 {
+  font-size: 42px;
+}
+
+
+/* estilos del proyecto */
+.Menu__logo {
+  height: 8rem;
+  vertical-align: top;
+  margin: auto;
+}
+
+.Menu__link__img {
+  margin-top: -4rem;
+}
+
+.Menu__link {
+  list-style: none;
+  overflow: hidden;
+  width: 90%;
+  height: 100%;
+  position: relative;
+  /* display: flex;
+  justify-content: space-evenly; */
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+
+  /* -------------------------------- */
+  text-decoration: none;
+   color: #3f485b;
+   font-weight: 700;
+   display: block;
+   line-height: 40px;
+   padding: 20px;
+   height: 100%;
+   /* para el menú desplegable */
+   position: relative;
+   text-align: center;
+   
+}
+
+
+.Menu__link:hover {
+  text-decoration: underline;
+  color: #0e5061;
+  font-size: 20px;
+}
+
+
+/* efecto boton */
+
+.btnEfecto {
+  display: inline-block;
+  margin-top: 1.875rem;
+  width: 11.875rem;
+  padding: 1.25rem;
+  margin-left: 1.25rem;
+  text-align: center;
+  text-decoration: none;
+  background-color: transparent;
+  border: 0.0938rem solid transparent;
+  color: #0062cc;
+  border-radius: 0.25rem;
+  transition: all 0.3s;
+  position: relative;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btnEfecto:after {
+  content: "";
+  width: 1.25rem;
+  height: 1.25rem;
+  border-top: 0.0938rem solid #0062cc;
+  border-left: 0.0938rem solid #0062cc;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  transition: all 0.2s;
+}
+
+.btnEfecto:before {
+  content: "";
+  width: 1.25rem;
+  height: 1.25rem;
+  border-bottom: 0.0938rem solid #0062cc;
+  border-right: 0.0938rem solid #0062cc;
+  position: absolute;
+  left: -1;
+  right: 0;
+  bottom: 0;
+  top: -1;
+  transition: all 0.2s;
+}
+
+/* efecto de los botones */
+.btnEfecto:hover:after {
+  width: 12.5625rem;
+  height: 4.375rem;
+}
+
+.btnEfecto:hover:before {
+  width: 12.5625rem;
+  height: 4.375rem;
+}
+
+.btnEfecto .letra {
+  font-weight: 700;
+  letter-spacing: 0.0625rem;
+  font-size: 18px;
+}
+
+.btnEfecto:hover > .letra {
+  font-weight: 900;
+}
+
+
+
+/**** *** **   PLANTILLA DE COLON   ** *** ****/
+.titulo {
+  font-size: 3.125rem;
+}
+
+
+
+/**** *** **   FOOTER   ** *** ****/
+.iconoDos {
+  margin-right: 8px;
+}
+
+
+.facebook {
+  background-color: #3b5999;
+}
+
+.instagram {
+  background-color: #e4405f;
+}
+
+.twitter {
+  background-color: #55acee;
+}
+
+.pinterest {
+  background-color: #bd081c;
+}
+
+.linkedin {
+  background-color: #007785;
+}
+
+
+
+/**** *** **   ESTILOS CONTACTO  -  FORMULARIO   ** *** ****/
+.contenedorContacto {
+  background-image: url(../src/img/estadioColon.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  max-width: 110rem;
+  margin: 1rem auto;
+  margin-top: 10rem;
+  /* --------------- */
+  -webkit-box-shadow: 0px 5px 15px 0px rgba(112,112,112,0.53);
+  -moz-box-shadow: 0px 5px 15px 0px rgba(112,112,112,0.53);
+  box-shadow: 0px 5px 15px 0px rgba(112,112,112,0.53);
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 2rem;
 }
