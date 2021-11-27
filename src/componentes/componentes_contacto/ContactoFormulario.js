@@ -1,56 +1,95 @@
 import React from 'react'
 import styled from 'styled-components';
+import { useState } from 'react';
+import axios from 'axios';
 
 
 const ContactoFormulario = () => {
- return ( 
-     <section>
-         <ContenedorFormulario>
-             <ContenedorFieldset>
-                 <LEGEND>Contáctanos llenando todos los campos</LEGEND>
 
-                 <ContenedorCampos>
+    const initialForm = {
+        nombre: '',
+        email: '',
+        telefono: '',
+        mensaje: ''
+    }
+
+    const [sending, setSending] = useState(false);
+    const [msg, setMsg] = useState('');
+    const [formData, setFormData] = useState(initialForm);
+
+    const handleChange = e => {
+        const { name, value } = e.target;
+        setFormData(oldData => ({
+            ...oldData,
+            [name]: value
+        }));
+    }
+
+    const handleSubmit = async e => {
+        e.preventDefault();
+        setMsg('');
+        setSending(true);
+        const response = await axios.post('http://localhost:3000/api/contacto', formData);
+        setSending(false);
+        setMsg(response.data.message);
+        if (response.data.error === false) {
+        setFormData(initialForm);
+        }
+    }
+
+
+
+return ( 
+    <section>
+        <ContenedorFormulario action="/contacto" method="post" onSubmit={handleSubmit}>
+            <ContenedorFieldset>
+                <LEGEND>Contáctanos llenando todos los campos</LEGEND>
+
+                <ContenedorCampos>
                         <Campos>
                             <LABEL>Nombre</LABEL>
-                            <INPUT type="text" placeholder="tu nombre"></INPUT>
+                            <INPUT type="text" placeholder="tu nombre" name="nombre" value={formData.nombre} onChange={handleChange}></INPUT>
                         </Campos>
 
                         <Campos>
                             <LABEL>Teléfono</LABEL>
-                            <INPUT type="tel" placeholder="tu teléfono" required></INPUT>
+                            <INPUT type="tel" placeholder="tu teléfono" required name="telefono" value={formData.telefono} onChange={handleChange}></INPUT>
                         </Campos>
 
                         <Campos>
                             <LABEL>Correo</LABEL>
-                            <INPUT type="email" placeholder="tu email" required></INPUT>
+                            <INPUT type="email" placeholder="tu email" required name="email" value={formData.email} onChange={handleChange}></INPUT>
                         </Campos>
 
                         <Campos>
                             <LABEL>Mensaje</LABEL>
-                            <TEXTAREA></TEXTAREA>
+                            <TEXTAREA name="mensaje" value={formData.mensaje} onChange={handleChange}></TEXTAREA>
                         </Campos>
-                 </ContenedorCampos>
+                </ContenedorCampos>
 
-                 <div>
+                <div>
                     <Boton type="submit" value="Enviar"></Boton>
-                 </div>
-             </ContenedorFieldset>
-         </ContenedorFormulario>
-     </section>
-  ); 
+                </div>
+
+                {sending ? <p>Enviando...</p> : null}
+                {msg ? <p> {msg} </p> : null}
+            </ContenedorFieldset>
+        </ContenedorFormulario>
+    </section>
+); 
 }    
 
 
 const ContenedorFormulario = styled.form`
-   background-color: rgba(0, 0, 0, .4);
+    background-color: rgba(0, 0, 0, .4);
    width: min(60rem, 100%); /* utiliza el más pequeño */
-   margin: 0px auto;
-   padding: 2rem;
-   border-radius: 1rem;
+    margin: 0px auto;
+    padding: 2rem;
+    border-radius: 1rem;
 `;
 
 const ContenedorFieldset = styled.fieldset`
-   border: none;
+    border: none;
 `;
 
 const LEGEND = styled.legend`
@@ -82,10 +121,10 @@ const Campos = styled.div`
 
 
 const LABEL = styled.label`
-   color: #fff;
-   font-weight: bold;
-   margin-bottom: .5rem;
-   display: block;
+    color: #fff;
+    font-weight: bold;
+    margin-bottom: .5rem;
+    display: block;
 `;
 
 
